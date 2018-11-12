@@ -20,4 +20,8 @@ b.传感器和gpio接线示意图
       |---TXD   --   RXD  |
 GPIO--|                   |--dart hoch sensor
       | --RXD   --   TXD  |
+      
+      
+      
+      
 具体GPIO示意图可以到网上查看.
