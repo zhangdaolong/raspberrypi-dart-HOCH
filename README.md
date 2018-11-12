@@ -19,15 +19,16 @@ b.传感器和gpio接线示意图
 
       |TXD      RXD  |
 GPIO  |              |dart hoch sensor
-      |RXD      TXD  |
+      |RXD      TXD  |    
 
-************************************************
-      
-      
-      
+************************************************   
+                                               
+         
+                                             
 具体GPIO示意图可以到网上查看.
 4.安装
 a.gcc -lmysqlclient dart.c -o hoch
 b.cp -a web/* /var/www/html
+c.修改/etc/php/7.0/apache2/php.ini中的short_open_tag为on
 
 
