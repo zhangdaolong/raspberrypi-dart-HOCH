@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312"> 
+    <title>HOCH</title>
+    <script src="js/echarts.common.min.js"></script>
+    <script src="js/jquery-1.11.2.min.js"></script>
+</head>
+
+<body>
+<div id="main" style="width: 1600px;height:800px;"></div>
+<script type="text/javascript">
+var o = new Object();
+o.ts=[];
+o.p2m=[];
+o.mgm3=[];
+o.std=[];
+
+function TestAjax(){
+          $.ajax({
+                type: "post",
+                async: false,  
+                url: "getdata.php",
+                data: {}, 
+                dataType: "json",
+                success: function(result) {
+                    if (result) {
+                        for (var i = 0; i < result.length; i++) {
+                            o.ts.push(result[i].time);
+                            o.p2m.push(result[i].ppb2mgm3);
+                            o.mgm3.push(result[i].mgm3);
+                            o.std.push(result[i].std);
+                        }
+                    }
+                }
+            })
+            return o;
+        }
+
+    TestAjax();
+var myChart = echarts.init(document.getElementById('main'));
+option = {
+    title: {
+        text: '甲醛检测数据'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['ppb-毫克每立方米','ugm3-毫克每立方米','标准-毫克每立方米']
+    },
+    grid: {
+        left: '2%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: o.ts
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'ppb-毫克每立方米',
+            type: 'line',
+            stack: '浓度',
+            data: o.p2m
+        },
+        {
+            name:'ugm3-毫克每立方米',
+            type:'line',
+            stack: '浓度',
+            data: o.mgm3
+        },
+        {
+            name:'标准-毫克每立方米',
+            type:'line',
+            stack: '浓度',
+            data: o.std 
+        }
+    ]
+};
+myChart.setOption(option);
+window.onresize = function(){
+    myChart.resize();
+}
+
+
+</script>
+</body>
+
+</html>
