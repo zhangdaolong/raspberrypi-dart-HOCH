@@ -39,11 +39,16 @@ b.cp -a web/* /var/www/html
 
 c.修改/etc/php/7.0/apache2/php.ini中的short_open_tag为on
 
+d.需要安装php-ssh的依赖,php-mysql相关依赖.
+
 5.接口
 getdata.php 获取监控数据json格式
 ssh.php 简单控制接口，可以远程执行一些命令
 执行格式如下
+
 http://IP/ssh.php?cmd
+
+
 
 
 
