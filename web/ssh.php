@@ -22,7 +22,7 @@ if ($name=="system"){
      $cmd="/usr/bin/killall collector;/usr/bin/collector";
      echo "Restart collector\n";
 }elseif($name=="clean"){
-     mysqli_query($link, "delete from HOCH;");
+     mysqli_query($link, "delete from HOCH where id > 0;");
      mysqli_close($link);
      echo "Clean table \n";
      exit 1;
